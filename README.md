@@ -1,4 +1,4 @@
-# Petbook: Aplicacion en React una Red Social de nuestras mascotas
+# Petlove: Aplicacion en React una Red Social de nuestras mascotas
 
 Esta es una aplicacion en React usando Styled Components y una API Dummy para los datos
 
