@@ -18,7 +18,7 @@ export const PostList = () => {
   }, [])
 
   return (
-    <List>
+    <List key={posts}>
       { posts.map(post => <PetPost key={post.id} id={post.id} post={post} />) }
     </List>
   )
