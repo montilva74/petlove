@@ -11,8 +11,10 @@ export const PostItem = styled.div`
 `
 
 export const UserWrapper = styled.div`
-  display: block;
-  width: 100%; 
+  display: flex;
+  flex: 1;
+  width: 100%;
+  margin-bottom: 10px;
 `
 
 export const UserImg = styled.img`

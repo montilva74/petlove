@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { List } from './styles'
 import PetPost from '../PetPost';
+import env from '../../local';
 
-const BASE_URL = 'https://dummyapi.io/data/api/';
-const API_KEY = '60e1eb1e8ec338341fc859d7';
+const BASE_URL = env.BASE_URL;
+const API_KEY = env.API_KEY;
 
 export const PostList = () => {
   const [posts , setPosts] = useState([])
 
   useEffect(function () {
-    window.fetch(BASE_URL + 'post', { method:'GET', headers: {
+    window.fetch(BASE_URL + 'post?page=1&limit=10', { method:'GET', headers: {
         'app-id': API_KEY
       }})
     .then(res => res.json())
-    .then(response => {
-        response.data.map( post => {
-          window.fetch(BASE_URL + 'post/' + post.id + '/comment', { method:'GET', headers: {
-            'app-id': API_KEY
-          }})
-          .then(r => r.json())
-          .then(r => post.comments = r.data.length)
-        })
-        
-        setPosts(response.data)
-    })
+    .then(response => { setPosts(response.data) })
   }, [])
 
   return (
