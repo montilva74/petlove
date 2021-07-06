@@ -8,7 +8,7 @@ import env from '../../local';
 const BASE_URL = env.BASE_URL;
 const API_KEY = env.API_KEY;
 
-const PetPost = ({ id, post }) => {
+const PetPost = ({ id, post, handleTag }) => {
 
     let date = new Date(post.publishDate);
 
@@ -20,36 +20,26 @@ const PetPost = ({ id, post }) => {
               .then(response => { setComments(response.data) })
         }, [])
 
-    // Si en el post no tiene comentarios, no abre el modal.
-    // let canComments = "";
-    // if (comments.length > 0 ) {
-    //     canComments =  <ModalComment className="modal" comments={comments} />
-    // } else {
-    //     canComments='0 Comments'
-    // }
-
     return (
-        <PostItem>
+        <PostItem key={post}>
             <UserWrapper>
                 <UserImg src={post.owner.picture} />
-                <UserName> 
+                <UserName>
                     <ModalUser buttonLabel={post.owner.firstName + " " + post.owner.lastName}
                                className="modal" data={post.owner} />
                 </UserName>
             </UserWrapper>
-            
             <ImgWrapper>
                 <Img src={post.image} alt="PetPost" />
             </ImgWrapper>
-            
             {post.text}
-
             <Button>
                 <MdFavoriteBorder size='20px'/>{ post.likes} likes!
             </Button>
-            { formatDate(date) }
+                { formatDate(date) }
             <PostTags>
-                { post.tags.map( tag => <a href="?tag=pitbull" key={tag.id}> #{tag} </a>)}
+                { post.tags.map( tag => 
+                    <a href="tagTitle" id={tag} key={tag} onClick={ handleTag }> #{tag} </a>)}
             </PostTags>
 
             <ModalComment className="modal" comments={comments} />
