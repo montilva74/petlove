@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const PostItem = styled.div`
   display: block;
   width: 100%; 
-  margin: 10px;
   padding: 10px;
+  margin-top: 30px;
   border: 1px solid #eee;
   border-radius: 3px;
   box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
